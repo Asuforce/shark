@@ -1,5 +1,4 @@
-.DS_Store
+*/.DS_Store
 
-web/temp/
-web/materials/
-SharkApplication
+*/*.wav
+*/SharkApplication.php
