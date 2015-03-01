@@ -1,0 +1,140 @@
+.header h1{ padding-right: 30px; }
+
+#main{
+    padding-top: 50px;
+}
+
+/*保存ボタン*/
+#add {
+    position: relative;
+    text-align: center;
+    top: 15px;
+}
+.colored_red{
+    background-color: #dd6a5f;
+    color: #ffffff;
+    width: 32%;
+    height: 35px;
+    font-size: 14px;
+    padding-bottom: 30px;
+}
+
+/*ユーザーアイコン*/
+.center_img{
+    text-align: center;
+    top: 8px;
+}
+.user_icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    border: solid 5px #ffffff;
+}
+
+/*ユーザー情報*/
+#setting {
+    left: 0;
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 10px;
+    color: #555555;
+}
+
+#setting input{
+    font-size: 14px;
+    width: 95%;
+    background-color: #ffffff;
+    border: none;
+    padding: 3px;
+    color: #595757;
+    outline: none;
+}
+
+#setting textarea{
+    font-size: 14px;
+    width: 95%;
+    height: 70px;
+    background-color: #ffffff;
+    border: none;
+    padding: 3px;
+    color: #595757;
+    outline: none;
+    resize: none;
+}
+.sexRadio input {
+    display: none;
+}
+.sexRadio label{
+    display: block;
+    float: left;
+    cursor: pointer;
+    width: 45%;
+    padding: 5px;
+    background: #bdc3c7;
+    color: #869198;
+    font-size: 17px;
+    text-align: center;
+    line-height: 1;
+    transition: .2s;
+}
+.sexRadio label:first-of-type{
+    border-radius: 3px 0 0 3px;
+}
+.sexRadio label:last-of-type{
+    border-radius: 0 3px 3px 0;
+}
+.sexRadio input[type="radio"]:checked + .switch-on {
+    background-color: #8f8f8f;
+    color: #fff;
+}
+.sexRadio input[type="radio"]:checked + .switch-off {
+    background-color: #8f8f8f;
+    color: #fff;
+}
+
+.set {
+    width: 100%;
+    border-spacing: 0px;
+    padding-top: 8px;
+    border-collapse: separate;
+}
+
+.set input{
+    /*width: 100%;*/
+    border: none;
+}
+
+.set th{
+    width:40%;
+    padding:4px;
+    font-size: 17px;
+    text-align: left;
+    vertical-align: top;
+    background-color: #ffffff;
+    border-top: 1px solid #83C2BD;
+    border-bottom: 1px solid #83C2BD;
+}
+
+.set td{
+    width:60%;
+    padding:4px;
+    color: #595757;
+    text-align: left;
+    background-color: #ffffff;
+    border-top: 1px solid #83C2BD;
+    border-bottom: 1px solid #83C2BD;
+}
+
+.error {
+    float: left;
+    color: #ff0000;
+    font-size: 12px;
+}
+
+#cropContainerEyecandy{
+    margin: 0 auto;
+    width:120px;
+    height:120px;
+    border:5px solid #fff;
+    border-radius: 50%;
+}
