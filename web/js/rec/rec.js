@@ -177,7 +177,7 @@ function uploadAudio(wav_data){
 
 $(function(){
   // リセットボタン
-  $("#main").on("click", ".reset", function() {
+  $(".operation").on("click", ".reset", function() {
     console.log('reset');
     if($('#recbtn').hasClass("recording")){
       $(this).css('zIndex', 0);
@@ -204,7 +204,7 @@ $(function(){
   });
 
   // 再生、一時停止ボタン
-  // $("#main").on('click', '.material-grid', function() {
+  // $(".operation").on('click', '.material-grid', function() {
   //   if(!$('.material-grid').hasClass('pause_bt')) {
   //     console.log('audio play');
   //     material.play();
@@ -216,12 +216,13 @@ $(function(){
   //   }
   // });
 
-  $("#main").on('click', '.material-grid', function() {
+  $(".operation").on('click', '.material-grid', function() {
+      console.log('play');
       material.play();
   });
 
   // 録音、停止ボタン
-  $("#main").on('click', '#recbtn', function() {
+  $(".operation").on('click', '#recbtn', function() {
     if(!$('#recbtn').hasClass("recording")){
       console.log('recording');
       $('#recbtn').addClass('recording');
@@ -246,7 +247,7 @@ $(function(){
   });
 
   // okボタン
-  $("#main").on("click", ".colored_w", function() {
+  $(".operation").on("click", ".colored_w", function() {
       if(wav_data) {
         setTimeout(uploadAudio(wav_data), 400);
       }
