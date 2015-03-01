@@ -1,9 +1,4 @@
-/* メイン*/
-.animsition{
-    height: 100%;
-}
-#main {
-    height: 100%;
+body{
     background-color:#dd6a5f;
 }
 
@@ -26,11 +21,10 @@
     z-index: 2;
 }
 
-#mix_contents{
-    left: 0;
+#contents {
     width: 95%;
-    height: 60%;
     padding-top: 95px;
+    padding-bottom: 120px;
     margin: 0 auto;
 }
 

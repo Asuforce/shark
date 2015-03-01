@@ -6,22 +6,16 @@
     padding-top: 40px;
 }
 
-.animsition{
-    height: 100%;
+.colored_red{
+    width: 32%;
+    height: 35px;
+    font-size: 14px;
 }
 
 /*保存ボタン*/
 #save {
     text-align: center;
     margin-top: 310px;
-}
-
-.colored_red{
-    background-color: #dd6a5f;
-    color: #ffffff;
-    width: 32%;
-    height: 35px;
-    font-size: 14px;
 }
 
 /*ログアウトボタン*/
