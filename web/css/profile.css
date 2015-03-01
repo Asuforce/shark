@@ -1,0 +1,178 @@
+/*=================================================
+
+ヘッダー部分
+
+=================================================*/
+
+.header{
+    display: inline-block;
+    width: 100%;
+    height: 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background-color: #ffffff;
+}
+
+.header h1{
+    font-size: 15px;
+    text-align: center;
+    padding-top: 5px;
+    padding-left: 30px;
+}
+
+/*=================================================
+
+自己紹介部分
+
+=================================================*/
+
+
+/*ユーザーアイコン*/
+
+.center_img{
+    text-align: center;
+    position: relative;
+    top: 10px;
+}
+
+.center_img img {
+    top:38px;
+    width: 120px;
+    border-radius: 120px;
+    -webkit-border-radius: 120px;
+    -moz-border-radius: 120px;
+    z-index: 1;
+}
+
+
+/*フォロー数*/
+#follow{
+    position: absolute;
+    display: block;
+    text-align: center;
+    width: 115px;
+    top:90px;
+    color: #ffffff;
+    left: 5%;
+}
+
+.follow{
+    position: absolute;
+    display: block;
+    width: 100px;
+    height: 100px;
+    top:-20px;
+    border-radius: 50%;
+    padding-top: 25px;
+    z-index: 2;
+}
+
+
+.follow h5{
+    font-size: 28px;
+    color: #ffffff;
+}
+#follow a{
+    display: block;
+    border-bottum: none;
+    color: #ffffff;
+}
+
+
+/*フォロワー数*/
+#follower{
+    position: absolute;
+    display: block;
+    text-align: center;
+    width: 115px;
+    top:90px;
+    color: #ffffff;
+    right: 5%;
+}
+
+.follower{
+    position: absolute;
+    display: block;
+    width: 100px;
+    height: 100px;
+    top:-20px;
+    border-radius: 50%;
+    padding-top: 25px;
+    z-index: 2;
+}
+
+
+.follower h5{
+    font-size: 28px;
+    color: #ffffff;
+}
+#follower a{
+    display: block;
+    border-bottum: none;
+    color: #ffffff;
+}
+
+/*紹介文*/
+#introduction{
+    position: absolute;
+    top: 158px;
+    width: 100%;
+    display: table;
+}
+
+#introduction p{
+    display: table;
+    color: #ffffff;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+
+/*=================================================
+
+ナビゲーション
+
+=================================================*/
+
+.nav{
+    width: 100%;
+    height: 27px;
+    position: absolute;
+    top:250px;
+    z-index: 2;
+    left: 0;
+    background-color: #ffffff;
+}
+
+#blank1{
+    width: 100%;
+    height: 10px;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    background-color: #57b3ad;
+}
+
+.nav.fixed {
+    position: fixed;
+    top: 30px;
+    width: 100%;
+    z-index:1;
+}
+
+/*=================================================
+
+コンテンツ部分（動く部分）
+
+=================================================*/
+
+#contents{
+    left: 0;
+    width: 95%;
+    padding-top: 283px;
+    padding-bottom: 50px;
+    margin: 0 auto;
+
+}
