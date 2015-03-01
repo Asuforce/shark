@@ -9,7 +9,6 @@ var playSounds = {};//現在再生している要素全体
 function connect(key,materialKey,url){
     var buffer_source;
     var getSound = new XMLHttpRequest();
-    //load
     getSound.open("GET",url,true);
     getSound.responseType = "arraybuffer";
     getSound.onload = function(){
@@ -31,7 +30,6 @@ function connect(key,materialKey,url){
 }
 
 function audio_play() {
-    console.log(playSounds);
     for (var key in playSounds) {
         var playSound = context.createBufferSource();
         var gainNode = context.createGain();
@@ -89,7 +87,7 @@ function createContents(contents){
         key = type+"_"+name+"_"+id;
 
         if(type === '0'){
-            url = BASE_URL+"/materials/"+name+"_"+id+".wav";
+            url = BASE_URL+"/materials/"+name+"_"+id+".mp3";
             materialKey = key;
             connect(key,materialKey,url);
         }else if(type === '1'){
@@ -102,7 +100,7 @@ function createContents(contents){
                 async: false    //実行順序の保証
             }).done(function(data){
                 for(var i=0; i< data.length; i++){
-                    url = BASE_URL+"/materials/"+data[i].name+"_"+data[i].id+".wav";
+                    url = BASE_URL+"/materials/"+data[i].name+"_"+data[i].id+".mp3";
                     materialKey = "0_"+data[i].name+"_"+data[i].id;
                     connect(key,materialKey,url);
                 }
@@ -111,74 +109,6 @@ function createContents(contents){
             });
         }
     }
-
-    //TimeLineドラッグ時の処理
-    $(".timeline").draggable({
-        helper: "clone",
-        scroll: false,
-        zIndex: 5,
-        start: function(e,ui){
-            //不要な要素を削除
-            $(".ui-draggable-dragging a h4").remove();
-            $(".ui-draggable-dragging a h6").remove();
-            $(".ui-draggable-dragging p").remove();
-            $(".ui-draggable-dragging .star").remove();
-            $(".ui-draggable-dragging ul").remove();
-
-            img = $(".ui-draggable-dragging a img");
-            ins = $(".ui-draggable-dragging .ins");
-            ins_img = $(".ui-draggable-dragging .ins img");
-            ins_img.hide();
-
-            //画像のサイズ変更
-            $(".ui-draggable-dragging").css({
-                'width' : '95%',
-                'background-color' : 'transparent',
-                'margin-left' : e.pageX-img.offset().left -50 +"px",
-                'margin-top' : -30 +"px"
-            });
-            img.css({
-                'width' : '80',
-                'height' : '80'
-            });
-            ins.css({
-                'width' : '30',
-                'height' : '30',
-                'position': 'relative',
-                'margin' : '0'
-            });
-            ins_img.css({
-                'width' : '30',
-                'height' : '30',
-                'position': 'relative',
-                'margin' : '0'
-            });
-            //画像のサイズ変更
-
-            $(".ui-draggable-dragging").animate({
-                 width  : '120',
-                 height : '120'
-            },1,function(){ins_img.show();});
-        }
-    });
-
-    //TimeLineドロップ時の処理。ドロップ場所はMusicアイコン
-    $("#music_icon a img").droppable({
-        accept : ".timeline" ,
-        tolerance : "touch",
-        drop : function(event , ui){
-            timeline = ui.draggable[0];
-            type = timeline.dataset.type;
-            id = timeline.dataset.id;
-            name = timeline.dataset.name;
-            span = "<span>"+timeline.childNodes[1].innerHTML+"</span>";
-            ul = timeline.childNodes[3];
-            scrubber = "<div class='scrubber'>"+ul.childNodes[1].innerHTML+"</div>";
-            var del = '<div class="del"><paper-icon-button icon="delete" title="delete"></paper-icon-button></div>';
-            var html = "<div class='timeline' data-type="+type+" data-id="+id+" data-name="+name+">"+span+"<ul>"+scrubber+del+"</ul>"+"</div>";
-            mixAdd(type,id,html);
-        }
-    });
 }
 
 function simpleCreateContents(contents){
@@ -208,9 +138,9 @@ function mixAdd(type,id,html) {
 //お気に入り追加・削除アクション
 var favorite_flg = true;
 $(function(){
-    $(document).on("click", ".star img", function(){
+    $("#main").on("click", ".star img", function(){
         if(favorite_flg === true){
-            id = $(this).attr("id");
+            var thisDom = this;
             favorite_flg = false;
             var flg = $(this).data("flg");
             var param = {
@@ -230,12 +160,14 @@ $(function(){
                     favorite_flg = true;
                     if(flg === 0){
                         //お気に入りに追加
-                        $("#"+id).data("flg",1);
-                        $("#"+id).attr("src",BASE_URL+"/img/star1.png");
+                        document.querySelector('#favAction').show();
+                        $(thisDom).data("flg",1);
+                        $(thisDom).attr("src",BASE_URL+"/img/star1.png");
                     }else if(flg==1){
                         //お気に入り削除
-                        $("#"+id).data("flg",0);
-                        $("#"+id).attr("src",BASE_URL+"/img/star0.png");
+                        document.querySelector('#favDelete').show();
+                        $(thisDom).data("flg",0);
+                        $(thisDom).attr("src",BASE_URL+"/img/star0.png");
                     }
                 }
             }).fail(function(data){
@@ -262,6 +194,7 @@ function getStartSounds(timeline,ul) {
         $(preSelectTimeline).children("ul").slideUp("normal");
         $(preSelectTimeline).children("ul").children(".scrubber").hide();
         $(preSelectTimeline).children("ul").children(".del").hide();
+        $(preSelectTimeline).children("ul").children(".addBtn").hide();
     }
 
     preSelectTimeline = $(timeline);
@@ -284,43 +217,58 @@ function getStartSounds(timeline,ul) {
     }
 }
 
-// アコーディオン(volume)
 $(function(){
-    $(document).on("click", ".timeline span", function(){
-        timeline = $(this).parent();
-        ul = timeline.children("ul");
-        timeline.toggleClass("slidedown");
-        if(!timeline.hasClass("changed")){
-            if(timeline.hasClass("slidedown")){
-                //slideDown
-                ul.slideDown("normal");
-                ul.children(".scrubber").fadeIn(800);
-                ul.children(".del").fadeIn(800);
-                if(timeline.hasClass("ui-draggable")&&!timeline.hasClass("playNow")){
-                    getStartSounds(timeline,ul);
-                    audio_play();
-                    timeline.addClass("playNow");
-                    var ratings = document.querySelector('.slider');
-                    ratings.addEventListener('core-change', function() {
-                        console.log(ratings.value);
-                        playSounds[key].gainNode.gain.value = ratings.value/100;
-                    });
-                }
-            }else{
-                //slideUp
-                ul.children(".scrubber").fadeOut(100);
-                ul.children(".del").fadeOut(100);
-                ul.slideUp("normal");
-                timeline.css("background-color","#fff");
-                timeline.children("span").children("a").css("background-color","#fff");
-                timeline.children("ul").css("background-color","#fff");
-                if(timeline.hasClass("ui-draggable")){
-                    preSelectTimeline = undefined;
-                    timeline.removeClass("playNow");
-                    audio_pause();
-                    playSounds = {};
+    $("#main").on("click", ".timeline span", function(e){
+        if(e.target.parentNode.className!=="star"){
+            timeline = $(this).parent();
+            ul = timeline.children("ul");
+            timeline.toggleClass("slidedown");
+            if(!timeline.hasClass("changed")){
+                if(timeline.hasClass("slidedown")){
+                    //slideDown
+                    ul.slideDown("normal");
+                    ul.children(".addBtn").fadeIn(1200);
+                    ul.children(".scrubber").fadeIn(800);
+                    ul.children(".del").fadeIn(800);
+                    if(!timeline.hasClass("playNow")&&!timeline.hasClass("mixRetain")){
+                        getStartSounds(timeline,ul);
+                        audio_play();
+                        timeline.addClass("playNow");
+                        var ratings = document.querySelector('.slider');
+                        ratings.addEventListener('core-change', function() {
+                            playSounds[key].gainNode.gain.value = ratings.value/100;
+                        });
+                    }
+                }else{
+                    //slideUp
+                    ul.children(".scrubber").fadeOut(100);
+                    ul.children(".del").fadeOut(100);
+                    ul.children(".addBtn").fadeOut(100);
+                    ul.slideUp("normal");
+                    timeline.css("background-color","#fff");
+                    timeline.children("span").children("a").css("background-color","#fff");
+                    timeline.children("ul").css("background-color","#fff");
+                    if(!timeline.hasClass("mixRetain")){
+                        preSelectTimeline = undefined;
+                        timeline.removeClass("playNow");
+                        audio_pause();
+                        playSounds = {};
+                    }
                 }
             }
         }
+    });
+    $("#main").on("click",".addBtn",function(){
+        timeline = this.parentNode.parentNode;
+        type = timeline.dataset.type;
+        id = timeline.dataset.id;
+        name = timeline.dataset.name;
+        span = "<span>"+timeline.childNodes[1].innerHTML+"</span>";
+        console.log(span);
+        ul = timeline.childNodes[3];
+        scrubber = "<div class='scrubber'>"+ul.childNodes[1].innerHTML+"</div>";
+        var del = '<div class="del"><paper-icon-button icon="delete" title="delete"></paper-icon-button></div>';
+        var html = "<div class='timeline mixRetain' data-type="+type+" data-id="+id+" data-name="+name+">"+span+"<ul>"+scrubber+del+"</ul>"+"</div>";
+        mixAdd(type,id,html);
     });
 });

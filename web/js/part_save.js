@@ -55,7 +55,7 @@ $(function() {
     });
 
     // 再生、一時停止ボタン
-    $(document).on('click', '.material-grid', function() {
+    $("#main").on('click', '.material-grid', function() {
         if(!$('.material-grid').hasClass('pause_bt')) {
             console.log('audio play');
             material.play();
@@ -67,7 +67,7 @@ $(function() {
         }
     });
 
-    $(document).on('click', '#stopbtn', function() {
+    $("#main").on('click', '#stopbtn', function() {
         console.log('audio stop');
         material.pause();
         material.currentTime = 0;

@@ -125,15 +125,17 @@ class Search extends Model
     }
 
     //ユーザ用htmlの作成
-    public function userCreate($contents) {
+    public function userCreate($contents,$base_url) {
         $results = array();
         foreach ($contents as $content) {
             array_push($results,
-                "<div class='timeline'>
-                <h4>".$content['name']."</h4>
-                <img src=".$content['pro_image'].">
-                <p>".$content['user_name']."</p>
-            </div>"
+                "<div class='userList'>
+                    <a href='{$base_url}/profile/{$content['user_name']}'>
+                    <img src=".$content['pro_image'].">
+                    <h4>".$content['name']."</h4>
+                    <h6>".$content['user_name']."</h6>
+                    </a>
+                </div>"
             );
         }
         return $results;

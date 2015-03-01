@@ -5,17 +5,17 @@
 
 <div class="animsition">
     <div id="circle">
-        <p>フォロー</p>
+        <p>Follow</p>
         <h7><?php echo count($follows); ?></h7>
     </div>
     <paper-shadow class="fixing" z="1"></paper-shadow>
     <div id="follow_user">
     <?php foreach ($follows as $follow): ?>
-        <div class='user_list'>
+        <div class='userList'>
             <a href="<?php echo $base_url; ?>/profile/<?php echo $follow['user_name']?>">
-                <h4><?php echo $follow['name']; ?></h4>
                 <img src="<?php echo $follow['pro_image']; ?>">
-                <p><?php echo $follow['user_name']; ?></p>
+                <h4><?php echo $follow['name']; ?></h4>
+                <h6><?php echo $follow['user_name']; ?></h6>
             </a>
         </div>
     <?php endforeach; ?>

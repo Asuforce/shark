@@ -39,7 +39,6 @@ class MessageController extends Controller
         $base_url = $this->request->getBaseUrl();
 
         foreach ($conversations as $conversation){
-            $conversation['pro_image'] = $this->db_manager->get('Profile')->convertImg($conversation['pro_image']);
             array_push($results,$this->db_manager->get('Message')->conversationCreate($base_url,$conversation));
         }
 
@@ -51,7 +50,6 @@ class MessageController extends Controller
     public function newConversation(){
         $user = $this->session->get('user');
         $follows = $this->db_manager->get('Profile')->fetchAllFollow($user['user_id']);
-        $follows = $this->db_manager->get('Profile')->convertAllImg($follows);
         return $this->render(array(
             'follows' => $follows,
             '_token'    => $this->generateCsrfToken('user/add'),
