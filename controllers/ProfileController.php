@@ -23,10 +23,6 @@ class ProfileController extends Controller
         if(!$profile){
             $this->forward404();
         }
-        //画像がない場合ははじく
-        if($profile['pro_image']){
-        $profile['pro_image'] = $this->db_manager->get('Profile')->convertImg($profile['pro_image']);
-        }
 
         return $this->render(array(
             'person' => $person,
@@ -104,7 +100,7 @@ class ProfileController extends Controller
         $allowedExts = array("gif", "jpeg", "jpg", "png", "GIF", "JPEG", "JPG", "PNG");
         $filename = $_FILES["img"]["tmp_name"];
         list($width, $height) = getimagesize($filename);
-        $img = $this->db_manager->get('Profile')->convertImg(file_get_contents($_FILES["img"]["tmp_name"]));
+        $img = file_get_contents($_FILES["img"]["tmp_name"]);
         $response = array(
             "status" => 'success',
             "url" => $img,
@@ -123,7 +119,6 @@ class ProfileController extends Controller
 
         // 素材一覧を取得
         $materials = $this->db_manager->get('Profile')->fetchAllMaterialList($profile);
-        $materials = $this->db_manager->get('Profile')->convertAllImg($materials);
 
         $results = $this->db_manager->get('Home')->timeLineCreate($materials,$base_url,$user['user_id']);
 
@@ -139,8 +134,6 @@ class ProfileController extends Controller
 
         // レコード一覧を取得
         $records = $this->db_manager->get('Profile')->fetchAllRecordlList($profile);
-        $records = $this->db_manager->get('Profile')->convertAllImg($records);
-
         $results = $this->db_manager->get('Home')->timeLineCreate($records, $base_url, $user['user_id']);
 
         header('Content-type: application/json');
@@ -159,8 +152,6 @@ class ProfileController extends Controller
         $favorits = $this->db_manager->get('Home')->keyNameChange($favorits);
         // 日付昇順でソート
         $favorits = $this->db_manager->get('Home')->sortDate($favorits);
-        //画像をhtml用に変換
-        $favorits = $this->db_manager->get('Profile')->convertAllImg($favorits);
 
         $results = $this->db_manager->get('Home')->timeLineCreate($favorits, $base_url,$user['user_id']);
 
@@ -173,7 +164,6 @@ class ProfileController extends Controller
         if($params['user_name']){
             $user = $this->db_manager->get('User')->fetchByUserName($params['user_name']);
             $follows = $this->db_manager->get('Profile')->fetchAllFollow($user['user_id']);
-            $follows = $this->db_manager->get('Profile')->convertAllImg($follows);
         }
         return $this->render(array(
             'user_name' => $params['user_name'],
@@ -187,7 +177,6 @@ class ProfileController extends Controller
         if($params['user_name']){
             $user = $this->db_manager->get('User')->fetchByUserName($params['user_name']);
             $followers = $this->db_manager->get('Profile')->fetchAllFollower($user['user_id']);
-            $followers = $this->db_manager->get('Profile')->convertAllImg($followers);
         }
         return $this->render(array(
             'user_name' => $params['user_name'],

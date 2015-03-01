@@ -22,8 +22,8 @@ $(function($) {
         setTimeout(
             function(){
                 $.ajax({
-                  url: $form.attr('action'),
-                  method: $form.attr('method'),
+                  url: BASE_URL+"/search/result",
+                  method: "get",
                   dataType: 'json',
                   data: param
                 }).done(function( results ) {

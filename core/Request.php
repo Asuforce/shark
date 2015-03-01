@@ -72,7 +72,7 @@ class Request
         if (!empty($_SERVER['HTTP_HOST'])) {
             return $_SERVER['HTTP_HOST'];
         }
-        
+
         return $_SERVER['SERVER_NAME'];
     }
 

@@ -27,10 +27,6 @@ class Home extends Model
             $sql = $sql.$follows[$count-1]['follow_id']." ORDER BY material.submit_date DESC";
             $result = $this->fetchAll($sql,array());
 
-            for ($i=0; $i<count($result); $i++) {
-                $result[$i]['pro_image'] = $this->convert_img($result[$i]['pro_image']);
-                $result[$i]['instrument_image'] = $this->convert_img($result[$i]['instrument_image']);
-            }
             return $result;
         } else { // フォローが0の場合
             return null;
@@ -56,20 +52,10 @@ class Home extends Model
             $sql = $sql.$follows[$count-1]['follow_id']." ORDER BY record_date DESC";
             $result = $this->fetchAll($sql,array());
 
-            for ($i=0; $i<count($result); $i++) {
-                $result[$i]['pro_image'] = $this->convert_img($result[$i]['pro_image']);
-            }
             return $result;
         } else {                    // フォローが0の場合
             return null;
         }
-    }
-
-    // バイナリーデータを変換
-    public function convert_img($img_data) {
-        $base64 = base64_encode($img_data);
-        $mime = 'image/jpg';
-        return 'data:'.$mime.';base64,'.$base64;
     }
 
     // お気に入りリストを取得
@@ -303,27 +289,28 @@ class Home extends Model
             if($type) $content_id = $content['record_id'];  // レコードの場合
             else $content_id = $content['material_id'];     // 素材の場合
             array_push($results, "
-                <div class='timeline' draggable='false' data-type=".$type." data-id=".$content_id." data-name=".$content['user_name'].">
-                    <span draggable='false'>
-                        <a draggable='false' href='".$base_url."/profile/".$content['user_name']."'>
-                            <img draggable='false' src=".$content['pro_image'].">
-                            <h4 draggable='false'>".$content['name']."</h4>
-                            <h6 draggable='false'>".$content['user_name']."</h6>
+                <div class='timeline' data-type=".$type." data-id=".$content_id." data-name=".$content['user_name'].">
+                    <span>
+                        <a href='".$base_url."/profile/".$content['user_name']."'>
+                            <img src=".$content['pro_image'].">
+                            <h4>".$content['name']."</h4>
+                            <h6>".$content['user_name']."</h6>
                         </a>
-                        <p draggable='false'>".$title."</p>
-                        <div draggable='false' class='ins'>
-                            <img draggable='false' src=".$content['instrument_image'].">
+                        <p>".$title."</p>
+                        <div class='ins'>
+                            <img src=".$content['instrument_image'].">
                         </div>
-                        <div draggable='false' class='star'>
-                            <img draggable='false' id = ".$i." src='".$base_url."/img/star".$flg.".png' data-flg = ".$flg."
+                        <div class='star'>
+                            <img id = ".$i." src='".$base_url."/img/star".$flg.".png' data-flg = ".$flg."
                             data-type =".$type." data-id = ".$content_id.">
                         </div>
                     </span>
-                    <ul draggable='false'>
-                        <div draggable='false' class='scrubber'>
-                            <img draggable='false' src='".$base_url."/img/volume.png'>
-                            <paper-slider draggable='false' class='slider' value='50' max='100'></paper-slider>
+                    <ul>
+                        <div class='scrubber'>
+                            <img src='".$base_url."/img/volume.png'>
+                            <paper-slider class='slider' value='50' min='0' max='100'></paper-slider>
                         </div>
+                        <paper-button data-type=".$type." data-id=".$content_id." data-name=".$content['user_name']." class='colored_red addBtn' onclick="."document.querySelector('#addAction').show()".">Add</paper-button>
                     </ul>
                 </div>
                 "

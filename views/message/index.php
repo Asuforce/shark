@@ -7,12 +7,12 @@
 <script type="text/javascript" src="<?php echo $base_url; ?>/js/message.js"></script>
 
 
-<paper-shadow class="nav" z="1">
+<div class="nav">
     <paper-tabs class="bottom_fit" selected="0">
         <paper-tab onclick="getInformation()">Notice</paper-tab>
         <paper-tab onclick="getConversation()">Message</paper-tab>
     </paper-tabs>
-</paper-shadow>
+</div>
 
 <div id="contents"></div>
 

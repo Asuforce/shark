@@ -1,0 +1,9 @@
+drop table conversation;
+drop table fav_material;
+drop table fav_record;
+drop table follow;
+drop table instrument;
+drop table material;
+drop table message;
+drop table profile;
+drop table user;

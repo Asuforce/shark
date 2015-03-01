@@ -1,0 +1,9 @@
+delete from conversation;
+delete from fav_material;
+delete from fav_record;
+delete from follow;
+delete from instrument;
+delete from material;
+delete from message;
+delete from profile;
+delete from user;

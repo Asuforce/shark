@@ -28,20 +28,17 @@ class SearchController extends Controller
                 //素材
                 case "0":
                     $results = $this->db_manager->get('Search')->searchMaterial($searchs);
-                    $results = $this->db_manager->get('Profile')->convertAllImg($results);//画像を変換
                     $results = $this->db_manager->get('Home')->timeLineCreate($results, $base_url, $user_id);//htmlを生成
                     break;
                 case "1":
                     //レコード
                     $results = $this->db_manager->get('Search')->searchRecord($searchs);
-                    $results = $this->db_manager->get('Profile')->convertAllImg($results);//画像を変換
                     $results = $this->db_manager->get('Home')->timeLineCreate($results,  $base_url, $user_id);//htmlを生成
                     break;
                 //ユーザ検索
                 case "2":
                     $results = $this->db_manager->get('Search')->searchUser($searchs);
-                    $results = $this->db_manager->get('Profile')->convertAllImg($results);//画像を変換
-                    $results = $this->db_manager->get('Search')->userCreate($results);//htmlを生成
+                    $results = $this->db_manager->get('Search')->userCreate($results,$base_url);//htmlを生成
                     break;
                 default:
                     break;

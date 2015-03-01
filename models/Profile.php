@@ -3,7 +3,7 @@ class Profile extends Model
 {
     // ユーザIDからプロフィール情報取得
     public function fetchByUserId($user_id) {
-        $sql = "SELECT user_id, follow_count, follower_count, sex, introduction, pro_image
+        $sql = "SELECT user_id, sex, introduction, pro_image
                 FROM profile WHERE user_id = :user_id";
 
         $result = $this->fetch($sql, array(':user_id' => $user_id));
@@ -24,8 +24,7 @@ class Profile extends Model
 
     // ユーザ名からユーザ情報取得
     public function fetchByUserName($user_name) {
-        $sql = "SELECT user.user_name, user.name, profile.user_id, profile.follow_count,
-                profile.follower_count,profile.sex,profile.introduction,profile.pro_image
+        $sql = "SELECT user.user_name, user.name, profile.user_id,profile.sex,profile.introduction,profile.pro_image
                 FROM profile
                 INNER JOIN user ON user.user_id = profile.user_id
                 WHERE user.user_name = :user_name";
@@ -84,32 +83,6 @@ class Profile extends Model
                 ':introduction' => $introduction
             ));
         }
-    }
-
-    // バイナリデータを画像データに変換
-    public function convertImg($data){
-        $base64 = base64_encode($data);
-        $mime = 'image/jpg';
-        return 'data:'.$mime.';base64,'.$base64;
-    }
-
-    //配列のバイナリデータをすべて画像データに変換
-    public function convertAllImg($datas){
-        $results = array();
-        foreach ($datas as $data) {
-            if(isset($data['pro_image'])){
-                $data['pro_image'] = $this->convertImg($data['pro_image']);
-            }else{
-                $data['pro_image'] = "";
-            }
-            if(isset($data['instrument_image'])){
-                $data['instrument_image'] = $this->convertImg($data['instrument_image']);
-            }else{
-                $data['instrument_image'] = "";
-            }
-            array_push($results, $data);
-        }
-        return $results;
     }
 
     // ハッシュ化の処理

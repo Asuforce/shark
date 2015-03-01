@@ -7,15 +7,13 @@
     <img src="<?php echo $base_url;?>/img/note.png">
 </paper-shadow>
 
-<div id="mix_contents">
-    <ul class="accordion">
-      <?php foreach($mixes as $mix): ?>
-        <li>
-          <?php echo $mix['html']; ?>
-        </li>
-      <?php endforeach; ?>
-    </ul>
-</div>
+<ul class="accordion">
+    <div id="contents">
+        <?php foreach($mixes as $mix): ?>
+            <?php echo $mix['html']; ?>
+        <?php endforeach; ?>
+    </div>
+</ul>
 
 <script type="text/javascript">
 $(function(){
@@ -24,7 +22,7 @@ $(function(){
     $(".timeline").children("ul").css("background-color","#fff");
 
     //Mix内の要素Delete処理
-    $(document).on("click", ".del", function(){
+    $("#main").on("click", ".del", function(){
         audio_pause();
         ul = $(this).parent();
         timeline = ul.parent();
@@ -65,12 +63,12 @@ $(function(){
         name = timeline.dataset.name;
 
         key = type+"_"+name+"_"+id;
-        url = BASE_URL+"/materials/"+name+"_"+id+".wav";
+        url = BASE_URL+"/materials/"+name+"_"+id+".mp3";
         materialKey = key;
         connect(key,materialKey,url);
     }
 
-    $(document).on("click", ".material-grid", function(){
+    $(".playbar").on("click", ".material-grid", function(){
         timeLines = $(".timeline");
         playSounds = {};
         if(!$(this).hasClass("playNow")){
@@ -82,7 +80,7 @@ $(function(){
             $(this).addClass("playNow");
         }
     });
-    $(document).on("click", "#stop", function(){
+    $(".playbar").on("click", "#stop", function(){
         if($(".material-grid").hasClass("playNow")){
             audio_pause();
             $(".material-grid").removeClass("playNow");
