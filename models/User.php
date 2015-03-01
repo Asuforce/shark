@@ -89,7 +89,7 @@ class User extends Model
         }
 
         // passwordが8文字以上32文字以内かどうか
-        if((strlen($password)<8)||(strlen($password)>32)){
+        if((strlen($password)<7)||(strlen($password)>33)){
             $errors['password'][] =  "パスワードの文字数は8文字以上32文字以下にしてください";
         }
 
