@@ -70,8 +70,6 @@ class HomeController extends Controller
         $favorites = $this->db_manager->get('Home')->keyNameChange($favorites);
         // 日付昇順でソート
         $favorites = $this->db_manager->get('Home')->sortDate($favorites);
-        //画像をhtml用に変換
-        $favorites = $this->db_manager->get('Profile')->convertAllImg($favorites);
 
         header('Content-type: application/json');
 

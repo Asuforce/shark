@@ -224,6 +224,13 @@ To change the slider secondary progress bar color:
     },
 
     immediateValueChanged: function() {
+      type = this.parentNode.parentNode.parentNode.dataset.type;
+      name = this.parentNode.parentNode.parentNode.dataset.name;
+      id = this.parentNode.parentNode.parentNode.dataset.id;
+      key = type+"_"+name+"_"+id;
+      if(Object.keys(playSounds).length!==0){
+        playSounds[key].gainNode.gain.value = (this.immediateValue)/100;
+      }
       if (!this.dragging) {
         this.value = this.immediateValue;
       }

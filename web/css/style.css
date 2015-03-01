@@ -3,7 +3,10 @@
 *{
     margin: 0;
     padding: 0;
-    draggable:false;
+}
+
+input[type="button"],input[type="submit"] {
+    -webkit-appearance: none;
 }
 
 html{
@@ -22,14 +25,12 @@ body{
 
 =======================================================*/
 .header{
-    display: inline-block;
     width: 100%;
     height: 30px;
     position: fixed;
-    top: 0;
-    left: 0;
     z-index: 3;
     background-color: #ffffff;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .header h1{
@@ -46,9 +47,11 @@ body{
     z-index: 2;
     left: 0;
     background-color: #ffffff;
+    box-shadow: 0px 2px 1px -1px #a0a0a0;
 }
 
 .back{
+    cursor:pointer;
     float: left;
     margin-left: 5px;
     height: auto;
@@ -59,26 +62,13 @@ body{
 
 /*設定ボタン*/
 .set{
+    cursor:pointer;
     float: right;
     margin-right: 5px;
     height: auto;
     width: auto;
     top: 3px;
     color: #000000;
-}
-
-/*フォローボタン*/
-#follow_bt{
-    float: right;
-    margin-right: 5px;
-    margin-top: 5px;
-}
-
-/*フォローボタン*/
-#plus{
-    float: right;
-    margin-right: 5px;
-    margin-top: 5px;
 }
 
 /*=======================================================
@@ -95,6 +85,7 @@ body{
     z-index: 1;
     left: 0;
     background-color: #ffffff;
+    box-shadow: 0px 2px 1px -1px #a0a0a0;
 }
 
 /*=======================================================
@@ -103,44 +94,48 @@ body{
 
 =======================================================*/
 .timeline{
+    cursor:pointer;
     width: 100%;
     height: auto;
     background-color: #ffffff;
     margin-bottom: 2px;
+    z-index: 3;
 }
 
 .timeline img{
-    height: 35px;
-    margin: 5px;
-    margin-right: 20px;
+    margin-right: 5px;
+    height: 45px;
     vertical-align: top;
     float: left;
     border-radius: 50%;
 }
 
 .timeline p{
-    margin-left: 62px;
+    margin-left: 45px;
     margin-right: 55px;
-    padding-top: 10px;
-    padding-bottom: 15px;
-    font-size: 15px;
+    padding-bottom: 10px;
+    font-size: 14px;
     text-align: left;
+    color: #696969;
 }
 .timeline h4{
     display: inline;
-    font-size: 12px;
-    color: #696969;
-    padding-top: 3px;
-    padding-right: 15px;
+    font-size: 15px;
+    color: #676767;
 }
 
 .timeline h6{
     display: inline;
-    font-size: 10px;
+    font-size: 12px;
     color: #696969;
 }
 
+.timeline a{
+    text-decoration: none;
+}
+
 .star{
+    cursor:pointer;
     float: right;
     position: relative;
     bottom: 20px;
@@ -148,7 +143,7 @@ body{
 }
 
 .star img{
-    height: 15px;
+    height: 20px;
     margin: 0 auto;
 }
 
@@ -163,10 +158,6 @@ body{
     height: 30px;
     margin: 0 auto;
     margin-bottom: 20px;
-}
-
-.timeline a{
-    text-decoration: none;
 }
 
 ul.accordion {
@@ -190,8 +181,15 @@ paper-slider{
     width: 60%;
     color:#F8B62D;
 }
+@media screen and (max-device-width: 480px) {
+/*スマホの時のみ*/
+paper-icon-button{
+    margin-top: -7px;
+}
+}
 
 .scrubber{
+    cursor:pointer;
     display: none;
     height:10px;
     text-align:left;
@@ -206,6 +204,7 @@ paper-slider{
 }
 
 .del{
+    cursor:pointer;
     display: none;
     position: absolute;
     text-align: right;
@@ -220,7 +219,6 @@ paper-slider{
 =======================================================*/
 #main{
     height: 100%;
-    height: auto;
 }
 /*=======================================================
 
@@ -291,14 +289,14 @@ paper-slider{
 #chat_space{
     height: 100%;
     height: auto;
-    padding-top:50xpx;
+    padding-top:80xpx;
     padding-bottom: 25px;
 }
 
 /*吹き出し部分全体*/
 div.balloon {
     width: 100%;
-    margin: 15px 0 15px 0;
+    padding-top: 50px;
 }
 /* 吹き出し左 */
 div.balloon-left-body {
@@ -375,7 +373,7 @@ div.balloon-right-foot-inner {
     width: 100%;
     height: auto;
     bottom: 0;
-    background-color: #f4f4f4;
+    background-color: #eaeaea;
 }
 
 /*テキストエリア、送信ボタンを統一させる form*/
@@ -393,19 +391,21 @@ div.balloon-right-foot-inner {
     margin: 5px;
     border: 1px solid #d0d0d0;
     resize:none;
+    border:none;
     overflow: hidden;
     outline: none;
 }
 
 /*送信ボタン*/
 #chat_footer [type='submit']{
+    cursor:pointer;
+    border:none;
     float: left;
     width: 15%;
     margin: 5px;
     position: absolute;
     bottom: 0;
     border:none;
-    border-radius:5px;
     padding: 5px;
     background-color: #57b3ad;
     color: #ffffff;
@@ -427,72 +427,6 @@ div.balloon-right-foot-inner {
     clear: both;
     width: 100%;
     height: 50px;
-}
-
-/*=================================================
-
-自己紹介部分
-
-=================================================*/
-
-#fixing{
-    width: 100%;
-    height: 203px;
-    position: absolute;
-    top: 30px;
-    left: 0;
-}
-
-/*ユーザーアイコン*/
-
-.center_img{
-    text-align: center;
-    position: relative;
-    top: 8px;
-}
-
-#fixing img {
-    top:38px;
-    width: 120px;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-}
-
-
-/*フォロー数*/
-#follow{
-    position: absolute;
-    width: 35%;
-    top:93px;
-    text-align: center;
-    color: #ffffff;
-    text-decoration: none;
-}
-
-/*フォロワー数*/
-#follower{
-    position: absolute;
-    width: 35%;
-    margin-left: 65%;
-    top:93px;
-    text-align: center;
-    color: #ffffff;
-    text-decoration: none;
-}
-
-/*紹介文*/
-#introduction{
-    position: absolute;
-    top: 158px;
-    width: 100%;
-    display: table;
-}
-
-#introduction p{
-    display: table;
-    padding: 0 20px;
-    margin: 0 auto;
 }
 
 #message_nav{
@@ -546,6 +480,7 @@ div.balloon-right-foot-inner {
     left: 0;
     z-index: 2;
     background-color: #ffffff;
+    border-top: 1px solid #f0f0f0;
 }
 
 .footer img{
@@ -559,6 +494,7 @@ div.balloon-right-foot-inner {
 }
 
 .footer li{
+    cursor:pointer;
     list-style-type: none;
     width: 20%;
     float: left;
@@ -579,7 +515,6 @@ div.balloon-right-foot-inner {
     width: 65px;
     z-index: 3;
     border-radius: 50%;
-    box-shadow: 0 11px 23px 0 rgba(0,0,0,0.5);
 }
 /*未読のメッセージ数*/
 #MyBadge {
@@ -595,4 +530,84 @@ div.balloon-right-foot-inner {
     color:#ffffff;
     background: #F26964;
     z-index: 2;
+}
+
+.userList{
+    cursor:pointer;
+    width: 100%;
+    height: auto;
+    position:relative;
+    background-color: #ffffff;
+    margin-bottom: 2px;
+    padding: 30px 0 30px 0;
+}
+
+.userList a{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
+.userList img{
+    height: 35px;
+    margin-left: 10px;
+    padding-top: 5px;
+    border-radius: 50%;
+}
+.userList h4{
+    font-size: 15px;
+    position: absolute;
+    color: #696969;
+    padding-top: 5px;
+    display: inline;
+}
+.userList h6{
+    font-size: 12px;
+    color: #696969;
+    display: inline;
+}
+
+.colored_red{
+    background-color: #dd6a5f;
+    color: #ffffff;
+    width: 12%;
+    height: 30px;
+    font-size: 12px;
+}
+
+.addBtn{
+    cursor:pointer;
+    display: none;
+    position: absolute;
+    margin-left: 72%;
+}
+
+.toastAdd{
+    background-color: #dd6a5f;
+    color: #fff;
+    height: 55px;
+    padding: 15px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.toastFav{
+    background-color: #f5a22d;
+    color: #fff;
+    height: 55px;
+    padding: 15px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.toastDelete{
+    background-color: #e6e6e6;
+    color: #696969;
+    height: 55px;
+    padding: 15px;
+    font-size: 15px;
+    text-align: center;
 }

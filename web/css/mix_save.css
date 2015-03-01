@@ -11,12 +11,8 @@
     color: #000000;
 }
 
-.animsition{
-    height: 100%;
-    background-color: #DD6A5F;
-}
-
 #main {
+    height: 100%;
     background-color: #DD6A5F;
 }
 
