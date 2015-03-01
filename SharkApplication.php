@@ -19,13 +19,12 @@ class SharkApplication extends Application
                 => array('controller' => 'user', 'action' => 'login'),
             '/add'
                 => array('controller' => 'user', 'action' => 'add'),
+            '/logout'
+                => array('controller' => 'user', 'action' => 'logout'),
 
             '/termsOfService'
                 => array('controller' => 'user', 'action' => 'termsOfService'),
 
-
-            '/logout'
-                => array('controller' => 'user', 'action' => 'logout'),
 
             '/home'
                 => array('controller' => 'home', 'action' => 'index'),
