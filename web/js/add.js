@@ -37,8 +37,10 @@ $(function($) {
                   dataType: 'json',
                   data: data
                 }).done(function( errors ) {
-                    length = Object.keys(errors).length;
+                    var length = 0;
+                    if ( !$.isEmptyObject(errors) ) length = Object.keys(errors).length;
                     if(length !== 0){
+                        $('.error').html('');
                         for(var key in errors){
                             for(var i=0; i<errors[key].length; i++){
                                 if(i>0){

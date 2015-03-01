@@ -25,7 +25,6 @@ class SharkApplication extends Application
             '/termsOfService'
                 => array('controller' => 'user', 'action' => 'termsOfService'),
 
-
             '/home'
                 => array('controller' => 'home', 'action' => 'index'),
             '/home/:action'
