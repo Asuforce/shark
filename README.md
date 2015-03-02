@@ -5,6 +5,8 @@
 開発をした WEB アフリケーションは「SHARK」と言います。
 名前の由来は SHare And Remix を略したもので、コンセプトである、シェアすること によって「音楽で人と人を繋げる」ことを意味しています。
 
+[公式PV - Youtube](https://www.youtube.com/watch?v=X3IHm__hiAk)
+
 ###テストについて
 1. ローカルサーバのドキュメントルートにリポジトリをクローンしてください。
 2. RD*内のSharkApplication.phpのconfigure()内をMySQLデータベースの環境に合わせてください。
