@@ -9,6 +9,7 @@ class ProfileController extends Controller
         $person = false;
         $follow_check = false;
         $user = $this->session->get('user');
+
         //ログインしているユーザと同じか判定。同じの場合、設定アイコンを表示
         if($params['user_name'] === $user['user_name']){
             $person = true;
