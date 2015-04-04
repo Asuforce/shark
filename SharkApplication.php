@@ -63,7 +63,7 @@ class SharkApplication extends Application
         $this->db_manager->connect('master', array(
             'dsn'      => 'mysql:dbname=shark;host=localhost',
             'user'     => 'root',
-            'password' => 'root',
+            'password' => 'Cde3Vfr4',
         ));
     }
 }
