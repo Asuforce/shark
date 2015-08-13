@@ -7,3 +7,6 @@ drop table material;
 drop table message;
 drop table profile;
 drop table user;
+drop table information;
+drop table record;
+drop table record_data;

@@ -151,12 +151,12 @@
         <div class="footer">
             <?php
                 $request_uri = explode("/", $_SERVER['REQUEST_URI']);
-                $viewName = $request_uri[4];
+                $viewName = $request_uri[1];
             ?>
             <?php $user = $session->get('user'); ?>
             <ul>
                 <li>
-                    <a href="<?php echo $base_url; ?>">
+                    <a href="/">
                         <?php if($viewName==null): ?>
                             <img src="<?php echo $base_url; ?>/img/home1.png">
                         <?php else: ?>
